@@ -1,8 +1,15 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
 
 # Create your views here.
 
-def hello_world(request):
-    return HttpResponse('hello world')
+@api_view(['GET'])
+def get_routes(request):
+    routes = [
+        "/backend/token",
+        '/backend/token/refresh'
+    ]
+    return Response(routes)
