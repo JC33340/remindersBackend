@@ -34,8 +34,8 @@ def get_profile(request):
             return Response({"user does not have a profile"}, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == "POST":
         data = json.loads(request.body)
-        #profile = Profile(user=request.user , first_name="jason",last_name="yes",email="foo@gmail.com")
-        #profile.save()
+        profile = Profile(user=request.user , first_name=data['firstName'],last_name=data['lastName'],email=data["email"])
+        profile.save()
         return Response({"profile created"}, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
